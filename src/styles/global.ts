@@ -15,7 +15,7 @@ box-shadow: 0 0 0 2px ${props => props.theme['yellow-dark']};
 body {
 background-color: ${props => props.theme['background']};
 color: ${props => props.theme['base-text']};
-padding: 2rem 7rem 0 7rem;
+padding: 2rem 8rem 0 8rem;
 -webkit-font-smoothing: antialiased;
 }
 
