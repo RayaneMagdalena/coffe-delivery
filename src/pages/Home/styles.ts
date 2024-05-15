@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const HomeContainer = styled.main``;
+export const HomeContainer = styled.main`
+padding-bottom: 9rem;
+`;
 
 export const HeaderHome = styled.header`
   display: flex;

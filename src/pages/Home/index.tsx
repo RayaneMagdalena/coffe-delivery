@@ -11,6 +11,7 @@ import {
 } from "./styles";
 import headerHome from "../../assets/HeaderHomeImg.svg";
 import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
+import { Menu } from "../../components/Menu";
 
 export function Home() {
   return (
@@ -56,6 +57,8 @@ export function Home() {
 
           <img src={headerHome} alt="" />
         </HeaderHome>
+
+      <Menu />
       </HomeContainer>
     </div>
   );
