@@ -1,185 +1,44 @@
-import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react";
-import Coffe from "./../../assets/Coffe.svg";
-import { AmountContainer, CardContainer, CardsContainer, InfoContainer, MenuContainer, PurchaseButton, TagsContainer } from "./styles";
+import { CardMenu } from "../CardMenu";
+import { CardsContainer, MenuContainer } from "./styles";
+import { api } from "../../lib/axios";
+import { useEffect, useState } from "react";
+
+interface Coffee {
+  id: number;
+  title: string;
+  description: string;
+  options: string[];
+  price: number;
+}
 
 export function Menu() {
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+
+  useEffect(() => {
+    api
+      .get("/coffees")
+      .then((response) => {
+        setCoffees(response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar os dados:", error);
+      });
+  }, []);
+
   return (
     <MenuContainer>
       <h1>Nossos cafés</h1>
 
       <CardsContainer>
-
-    
-      <CardContainer>
-        <div>
-          <img src={Coffe} alt="" />
-
-          <TagsContainer>
-            <p>TRADICIONAL</p>
-            <p>ALCOÓLICO</p>
-            <p>GELADO</p>
-          </TagsContainer>
-
-          <h2>Expresso Tradicional</h2>
-          <p>O tradicional café feito com água quente e grãos moídos</p>
-        </div>
-
-        <InfoContainer>
-          <p>
-            R$ <span>9,90</span>
-          </p>
-          
-          
-          <AmountContainer>
-            <button><Minus size={14} /></button>
-          <p>1</p>
-          <button><Plus size={14} /></button>
-          </AmountContainer>
-          
-
-          <PurchaseButton>
-            <ShoppingCartSimple weight="fill" color="#ffff" size={19} />
-          </PurchaseButton>
-       
-        </InfoContainer>
-      </CardContainer>
-
-      <CardContainer>
-        <div>
-          <img src={Coffe} alt="" />
-
-          <TagsContainer>
-            <p>TRADICIONAL</p>
-            <p>ALCOÓLICO</p>
-            <p>GELADO</p>
-          </TagsContainer>
-
-          <h2>Expresso Tradicional</h2>
-          <p>O tradicional café feito com água quente e grãos moídos</p>
-        </div>
-
-        <InfoContainer>
-          <p>
-            R$ <span>9,90</span>
-          </p>
-          
-          
-          <AmountContainer>
-            <button><Minus size={14} /></button>
-          <p>1</p>
-          <button><Plus size={14} /></button>
-          </AmountContainer>
-          
-
-          <PurchaseButton>
-            <ShoppingCartSimple weight="fill" color="#ffff" size={19} />
-          </PurchaseButton>
-       
-        </InfoContainer>
-      </CardContainer>
-
-      <CardContainer>
-        <div>
-          <img src={Coffe} alt="" />
-
-          <TagsContainer>
-            <p>TRADICIONAL</p>
-            <p>ALCOÓLICO</p>
-            <p>GELADO</p>
-          </TagsContainer>
-
-          <h2>Expresso Tradicional</h2>
-          <p>O tradicional café feito com água quente e grãos moídos</p>
-        </div>
-
-        <InfoContainer>
-          <p>
-            R$ <span>9,90</span>
-          </p>
-          
-          
-          <AmountContainer>
-            <button><Minus size={14} /></button>
-          <p>1</p>
-          <button><Plus size={14} /></button>
-          </AmountContainer>
-          
-
-          <PurchaseButton>
-            <ShoppingCartSimple weight="fill" color="#ffff" size={19} />
-          </PurchaseButton>
-       
-        </InfoContainer>
-      </CardContainer>
-
-      <CardContainer>
-        <div>
-          <img src={Coffe} alt="" />
-
-          <TagsContainer>
-            <p>TRADICIONAL</p>
-            <p>ALCOÓLICO</p>
-            <p>GELADO</p>
-          </TagsContainer>
-
-          <h2>Expresso Tradicional</h2>
-          <p>O tradicional café feito com água quente e grãos moídos</p>
-        </div>
-
-        <InfoContainer>
-          <p>
-            R$ <span>9,90</span>
-          </p>
-          
-          
-          <AmountContainer>
-            <button><Minus size={14} /></button>
-          <p>1</p>
-          <button><Plus size={14} /></button>
-          </AmountContainer>
-          
-
-          <PurchaseButton>
-            <ShoppingCartSimple weight="fill" color="#ffff" size={19} />
-          </PurchaseButton>
-       
-        </InfoContainer>
-      </CardContainer>
-
-      <CardContainer>
-        <div>
-          <img src={Coffe} alt="" />
-
-          <TagsContainer>
-            <p>TRADICIONAL</p>
-            <p>ALCOÓLICO</p>
-            <p>GELADO</p>
-          </TagsContainer>
-
-          <h2>Expresso Tradicional</h2>
-          <p>O tradicional café feito com água quente e grãos moídos</p>
-        </div>
-
-        <InfoContainer>
-          <p>
-            R$ <span>9,90</span>
-          </p>
-          
-          
-          <AmountContainer>
-            <button><Minus size={14} /></button>
-          <p>1</p>
-          <button><Plus size={14} /></button>
-          </AmountContainer>
-          
-
-          <PurchaseButton>
-            <ShoppingCartSimple weight="fill" color="#ffff" size={19} />
-          </PurchaseButton>
-       
-        </InfoContainer>
-      </CardContainer>
-
+        {coffees.map((coffee) => (
+          <CardMenu
+            id={coffee.id}
+            title={coffee.title}
+            description={coffee.description}
+            options={coffee.options}
+            price={coffee.price}
+          />
+        ))}
       </CardsContainer>
     </MenuContainer>
   );
